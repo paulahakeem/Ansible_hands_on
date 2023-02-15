@@ -1,0 +1,31 @@
+
+- name: Install and Configure apache2 and Copy custom HTML file
+  hosts: web
+  become: yes
+  tasks:
+  - name: Install apache2
+    apt:
+      name: apache2
+      state: latest
+
+  - name: Change apache2 port to 8090
+    lineinfile:
+      dest: /etc/apache2/ports.conf
+      regexp: '^Listen 8080'
+      line: 'Listen 8090'
+      state: present 
+  - name: Start apache2 service
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+
+  - name: Copy HTML file to target host
+    copy:
+      src: ./index.html
+      dest: /var/www/html/index.html
+
+  - name: Restart nginx
+    service:
+      name: apache2
+      state: restarted
