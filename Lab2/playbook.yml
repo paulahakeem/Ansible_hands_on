@@ -50,7 +50,7 @@
     command: "python3 /home/ubuntu/Booster_CI_CD_Project/manage.py migrate"
 
   - name: Start Django server
-    shell: cd /home/ubuntu/ooster_CI_CD_Project; python3 manage.py runserver 0.0.0.0:8000 &
+    shell: cd /home/ubuntu/Booster_CI_CD_Project; python3 manage.py runserver 0.0.0.0:8000 &
     async: 0
     poll: 0
 
